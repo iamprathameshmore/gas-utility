@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer - GasConnect</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link
+    rel="icon"
+    href="https://img.icons8.com/external-vectorslab-flat-vectorslab/53/external-Fire-security-vectorslab-flat-vectorslab.png" alt="external-Fire-security-vectorslab-flat-vectorslab"
+    
+    type="image/x-icon"
+  >
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <!-- Navbar -->
+    <header class="fixed w-full bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <!-- <img class="h-8 w-auto" src="https://example.com/logo.svg" alt="Logo"> -->
+            <h2 class="text-center text-3xl font-extrabold text-red">
+              Gas Connect
+            </h2>
+          </div>
+          <div class="flex items-center">
+            <a
+              href="/"
+              class="text-gray-500 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium"
+              >Logout</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-screen-xl mx-auto p-4 pt-6 md:p-6 lg:p-12">
+      <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <form method="POST" class="bg-gray-100 w-96">
+          {% csrf_token %}
+          <input
+            name="first"
+            type='text'
+            required
+            class="my-2 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            placeholder="First Name"
+          />
+          <input
+            name="last"
+            type="text"
+            required
+            class="my-2 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            placeholder="Last Name"
+          />
+          <input
+            name="phoneNumber"
+            type="number"
+            required
+            class="my-2 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            placeholder="Phone no"
+          />
+          <input
+            name="address"
+            type="text"
+            class="my-2 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            placeholder="Address"
+          >
+          
+          <button
+            type="submit"
+            class="btn btn-sm btn-circle btn-ghost my-2"
+          >
+            add request
+          </button>
+        </form>
+      </main>
+    </main>
+    <!-- Footer -->
+    <footer class="">
+      <div class="max-w-screen-xl mx-auto p-4">
+        <p class="text-center text-gray-500 dark:text-gray-400">
+          &copy; 2024 Gas Connect by
+          <a
+            target="_blank"
+            href="https://iamprathameshmore.github.io/iamprathameshmore/"
+            class="text-indigo-500"
+            >Iamprathameshmore</a
+          >
+        </p>
+      </div>
+    </footer>
+
+    <!-- The Modal -->
+  </body>
+</html>

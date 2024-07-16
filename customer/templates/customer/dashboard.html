@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer - GasConnect</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="https://img.icons8.com/external-vectorslab-flat-vectorslab/53/external-Fire-security-vectorslab-flat-vectorslab.png"
+      alt="external-Fire-security-vectorslab-flat-vectorslab"
+      type="image/x-icon"
+    />
+    <style>
+      /* label {
+  background-color: indigo;
+  color: white;
+  padding: 0.5rem;
+  font-family: sans-serif;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+#file-chosen{
+  margin-left: 0.3rem;
+  font-family: sans-serif;
+} */
+    </style>
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <!-- Navbar -->
+    <header class="fixed w-full bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <!-- <img class="h-8 w-auto" src="https://example.com/logo.svg" alt="Logo"> -->
+            <h2 class="text-center text-3xl font-extrabold text-red">
+              Gas Connect
+            </h2>
+          </div>
+          <div class="flex items-center">
+            <a
+              href="#"
+              class="text-indigo-500 px-3 py-2 rounded-md text-sm font-medium"
+              >Dashboard</a
+            >
+            <form method="post">
+              {% csrf_token %}
+              <button
+                name="action"
+                value="Logout"
+                class="text-gray-500 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Logout
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-screen-xl mx-auto p-4 pt-6 md:p-6 lg:p-12">
+      <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+          <!-- Profile Header -->
+
+          <!-- Profile Details -->
+          <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+            <dl class="sm:divide-y sm:divide-gray-200">
+              <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">Full name</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  {{ first_name }} {{ last_name}}
+                </dd>
+              </div>
+              <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">Email Address</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  {{ email }}
+                </dd>
+              </div>
+              <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">Phone number</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  +91 {{ phoneNumber }}
+                </dd>
+              </div>
+              <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">Address</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  {{ address }}
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <!-- Request Tracking -->
+        <div class="mt-8">
+          <div class="flex justify-between items-center">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+              Service Requests
+            </h2>
+            <div class="flex justify-center items-center">
+              <button
+                onclick="document.getElementById('my_modal_3').showModal()"
+                class="text-indigo-500 hover:text-black px-4 py-2 rounded-md text-sm font-medium bg-gray-200 hover:bg-gray-300 transition-colors duration-200"
+              >
+                Add Request
+              </button>
+            
+              <dialog id="my_modal_3" class="p-0 rounded-lg">
+                <div class="modal-box bg-white rounded-lg shadow-lg overflow-hidden w-96">
+                  <form method="POST" class="p-6 space-y-4" enctype="multipart/form-data">
+                    {% csrf_token %}
+            
+                    <div class="flex flex-col items-center space-y-2">
+                      <!-- Actual upload input (hidden) -->
+                      <input type='file' id="actual-btn" accept="image/*" name="imageReq" hidden />
+            
+                      <!-- Custom upload button -->
+                      <label for="actual-btn" class="cursor-pointer w-full bg-indigo-500 text-white px-4 py-2 rounded-md text-center">
+                        Choose File
+                      </label>
+                      <p id="file-chosen" class="text-gray-600">No file chosen</p>
+                    </div>
+            
+                    <input
+                      name="first_name"
+                      type="text"
+                      required
+                      class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      placeholder="First Name"
+                    />
+                    <input
+                      name="last_name"
+                      type="text"
+                      required
+                      class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      placeholder="Last Name"
+                    />
+                    <input
+                      name="title"
+                      type="text"
+                      required
+                      class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      placeholder="Title"
+                    />
+                    <textarea
+                      name="discription"
+                      required
+                      class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      placeholder="Description"
+                    ></textarea>
+            
+                    <button
+                      type="submit"
+                      class="w-full bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition-colors duration-200"
+                    >
+                      Add Request
+                    </button>
+                  </form>
+                </div>
+              </dialog>
+            </div>
+            
+          </div>
+          <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+            <ul class="divide-y divide-gray-200">
+              {% if request %} {% for request in request %}
+              <li class="px-4 py-4 sm:px-6">
+                <div class="flex items-center justify-between">
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-indigo-600 truncate">
+                      {{request.title}}
+                    </p>
+                    <p class="mt-1 text-sm text-gray-500">
+                      Request ID: {{request.req_id}}
+                    </p>
+                  </div>
+                  <div class="ml-4 flex-shrink-0">
+                    <span
+                      class="px-4 py-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800"
+                      >{{ request.current_state }}</span
+                    >
+                  </div>
+                </div>
+                <div class="mt-3 mb-3">
+                  <img
+                    class="h-28 w-28 rounded object-cover mb-4 sm:mb-0 sm:mr-6"
+                    src="/media/{{ request.image }}"
+                    alt="Profile picture"
+                  />
+                  
+                </div>
+                <div class="mt-3 mb-3 text-sm text-gray-600">
+                  {{ request.discription}}
+                </div>
+                <div class="mt-2 sm:flex sm:justify-between">
+                  <div class="sm:flex">
+                    <p class="flex items-center text-sm text-gray-500">
+                      <!-- <i data-feather="calendar" class="flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400"></i> -->
+                      Submitted: {{ request.submit_at}}
+                    </p>
+                  </div>
+                  {% if request.resolve_at %}
+                  <div
+                    class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0"
+                  >
+                    Resolved: {{request.resolve_at }}
+                  </div>
+                  {% endif %}
+                </div>
+              </li>
+              {% endfor %} {% else %}
+              <div
+                class="max-w-screen-xl mx-auto p-4 h-96 flex justify-center items-center"
+              >
+                <p class="text-center text-gray-500 dark:text-gray-400">
+                  No gas requests found for your email.
+                  <a
+                    target="_blank"
+                    onclick="my_modal_3.showModal()"
+                    class="text-indigo-500"
+                    >Add Request</a
+                  >
+                </p>
+              </div>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </main>
+    </main>
+    <!-- Footer -->
+    <footer class="">
+      <div class="max-w-screen-xl mx-auto p-4">
+        <p class="text-center text-gray-500 dark:text-gray-400">
+          &copy; 2024 Gas Connect by
+          <a
+            target="_blank"
+            href="https://iamprathameshmore.github.io/iamprathameshmore/"
+            class="text-indigo-500"
+            >Iamprathameshmore</a
+          >
+        </p>
+      </div>
+    </footer>
+
+    <!-- The Modal -->
+  </body>
+  <script>
+    const actualBtn = document.getElementById('actual-btn');
+
+const fileChosen = document.getElementById('file-chosen');
+
+actualBtn.addEventListener('change', function(){
+  fileChosen.textContent = this.files[0].name
+})
+  </script>
+</html>
